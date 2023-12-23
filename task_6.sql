@@ -47,10 +47,7 @@ limit 1;
 
 -- query 5: the amount of chili pepper used between the 17th and 24th of the month, in grams
 select SUM(total_sum) as total_sum
-from (select oc.product_id,
-             mi.ingredient_id,
-             sum(grams * quantity) as total_sum,
-             date
+from (select sum(grams * quantity) as total_sum
       from ingredients
                left join public.menu_item mi ON ingredients.ingredient_id = mi.ingredient_id
                left join order_content oc ON mi.product_id = oc.product_id
